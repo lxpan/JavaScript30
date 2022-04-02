@@ -42,6 +42,28 @@
 
 <button></button>
 <script>
+  // the click bubbles upwards from three, two, one, body, html, etc
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation();  // stop bubbling event up
+    // console.log(this);
+  }
+
+  // document.body.addEventListener('click', logText);
+
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('Click!!!');
+  }, {
+    once: true
+  });
 
 </script>
 </body>
