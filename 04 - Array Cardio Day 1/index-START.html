@@ -61,34 +61,54 @@
     // return value 1: sort b before a
     // return value -1: sort a before b
     const ordered = inventors.sort((a, b) => (a.year > b.year) ? 1 : -1);
-    console.table(ordered);
+    // console.table(ordered);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
     const totalYears = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year)
     }, 0);
-    console.log(totalYears);
+    // console.log(totalYears);
 
     // 5. Sort the inventors by years lived
     const sortYearsLived = inventors.sort((a, b) => (a.passed - a.year > b.passed - b.year) ? 1 : -1);
-    console.table(sortYearsLived);
+    // console.table(sortYearsLived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-    const links = document.querySelectorAll('.mw-category-group a');
-    const linksArray = Array.from(links)
-    const de = linksArray
-                .map(link => link.title)
-                .filter(title => title.includes("de"));
-    console.log(de);
+
+    // const links = document.querySelectorAll('.mw-category-group a');
+    // const linksArray = Array.from(links)
+    // const de = linksArray
+    //             .map(link => link.title)
+    //             .filter(title => title.includes("de"));
+    // console.log(de);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const lastNameSort = people.sort((a, b) => {
+      const [aLastName, aFirstName] = a.split(',');
+      const [bLastName, bFirstName] = b.split(',');
+      return (aLastName > bLastName) ? 1: -1;
+    });
+
+    // console.log(lastNameSort);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    
+    counts = {}
+    const transportCount = data.reduce((obj, item) => {
+      if(!obj[item]) {
+        obj[item] = 1;
+      } else {
+        obj[item]++;
+      }
+      // obj becomes previousValue on the second round
+      return obj;
+    }, {}) 
+    console.log(transportCount);
 
   </script>
 </body>
